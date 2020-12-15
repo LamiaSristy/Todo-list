@@ -1,0 +1,29 @@
+{
+  "name": "Todo-list",
+  "version": "1.0.0",
+  "description": "This project is an application ...",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LamiaSristy/Todo-list.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LamiaSristy/Todo-list/issues"
+  },
+  "homepage": "https://github.com/LamiaSristy/Todo-list#readme",
+  "devDependencies": {
+    "webpack": "^5.10.2",
+    "webpack-cli": "^4.2.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.20"
+  }
+}
