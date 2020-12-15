@@ -1,1 +1,105 @@
 @import 'bootstrap';
+
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background-color: rgb(77, 75, 75);
+}
+
+h2,
+h3 {
+  margin: 20px;
+  text-align: center;
+  color: bisque;
+}
+
+.navbar-light{
+    background-color: rgb(44, 52, 78) !important;
+}
+
+.title {
+    margin: 0 auto;
+}
+
+.container {
+  margin-top: 20px;  
+  padding: 20px;
+  background-color: gray !important;
+  color: #fff;
+  border: 1px dotted brown;
+  border-radius: 10px;
+}
+
+.left-bar {
+  height: 400px;
+}
+
+.right-bar { 
+  height: 400px;
+}
+
+.div-title {
+  text-align: center;  
+  color: brown;
+}
+
+.todo {  
+  font-size: small;
+  padding : 10px 20px;
+  background-color: blanchedalmond;
+  color: black;
+  border-radius: 10px;
+  box-shadow: 5px 10px rgb(49, 49, 49);
+}
+
+.todo:hover {
+  transform: scale(1.02, 1.02);
+}
+
+.createbtn {
+  margin-top: 10px;
+}
+
+.btn-primary {
+  width: 100%;  
+  margin: 10px auto;
+  background-color: rgb(44, 52, 78) !important;
+  border:  rgb(44, 52, 78);
+  color: brown;
+}
+
+
+.tododisplay {
+  padding: 10px 30px;  
+  background-color: blanchedalmond;
+  border-radius: 10px;
+  color: black;
+  text-align: center;
+  box-shadow: 5px 10px rgb(49, 49, 49);
+}
+
+.tododisplay:hover {
+    transform: scale(1.02, 1.02);
+  }
+
+.todotitle {
+  font-size: large;
+  font-weight: 700;
+}
+
+.tododescription {
+    font-size: small;
+}
+
+.status {
+    font-size: x-small;
+}
+

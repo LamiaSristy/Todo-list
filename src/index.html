@@ -4,11 +4,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>To-do-List</title>
 </head>
 
 <body>
-  <h1 class="text-primary">helloo bootstrap check<h1>
+  <header>
+    <nav class="navbar navbar-light text-light">
+      <h1 class="title">helloo bootstrap check</h1>  
+  </nav> 
+  </header>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-4 left-bar">
+        <p class = "div-title">List of works</p>
+        <div class = "todo">
+          <ul>
+            <li>To Do 1</li>
+            <li>To Do 2</li>
+            <li>To Do 3</li>
+          </ul>
+        </div>
+        <div class="createbtn">
+          <button class="btn btn-primary btn-lg">Create New Task</button>
+        </div>
+      </div>  
+      <div class="col-12 col-md-8 right-bar">
+        <p class ="div-title">Your To-do's</p>
+          <div class= "tododisplay">
+            <p class="todotitle">To Do Name</p>
+            <p class="tododescription small">Description</p>
+            <p class="status">Status</p>
+          </div>
+      </div>  
+    </div>     
+  </div>
+
 </body>
 
 </html>
