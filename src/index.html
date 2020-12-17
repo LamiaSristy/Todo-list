@@ -44,13 +44,17 @@
           </button>
         </div>
         <div class="modal-body">
+          <input type="hidden" id="projectIndexTask" />
           <form>
             <div class="form-group">
-              <label for="projectName">Task Name</label>              
-              <input type="text" class="form-control" id="taskName" placeholder="Task Name">
-              <label for="description">Description</label>              
+              <label for="taxkName">Task Name</label>
+              <input type="text" class="form-control" id="taskName" placeholder="Task 
+              Name">
+              <label for="description">Description</label>
               <input type="text" class="form-control" id="description" placeholder="Description">
-              <label for="priority">Priority</label>              
+              <label for="dueDate">Due Date</label>
+              <input type="datetime" class="form-control" id="dueDate">
+              <label for="priority">Priority</label>
               <input type="number" class="form-control" id="priority">
             </div>
           </form>
@@ -77,19 +81,19 @@
           </button>
         </div>
         <div class="todo">
-          <ul id="projects-ul">          
+          <ul id="projects-ul">
           </ul>
         </div>
-      
+
       </div>
       <div class="col-12 col-md-8 right-bar">
         <p class="div-title">Your To-do's</p>
-        <div class="createbtn">
+        <div class="createbtn" id="createTaskDiv">
           <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#taskModal">
             Create New Task
           </button>
         </div>
-        <ul class="tododisplay" id="tododisplay">     
+        <ul class="tododisplay" id="tododisplay">
         </ul>
       </div>
     </div>
