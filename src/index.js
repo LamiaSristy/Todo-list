@@ -1,82 +1,98 @@
 import _ from 'lodash';
 import 'bootstrap';
 import './style/main.scss';
-import { taskFactory, todoItem } from './factories';
-import ToDoList from './toDoList';
+// import { taskFactory, todoItem } from './factories';
+// import ToDoList from './toDoList';
 
 const { Project } = require('./projectClass');
 const { Todo } = require('./todoClass');
 
 
-const createBtn = document.getElementById('btnCreateTask');
+const createBtn = document.getElementById('btnCreateProject');
 const projectsulEl = document.getElementById('projects-ul');
+const todoDisplayEl = document.getElementById('tododisplay');
 
-const toDoList = [];
+let projects = [];
 
 function setDefaults() {
   const retrieved = JSON.parse(localStorage.getItem('todolist'));
   if (!retrieved) {
     const project1 = new Project('Test');
-    const todo1 = new Todo('First thing to do ..', 'your description', 12, 1);
-    const todo2 = new Todo('Second thing todo ...', 'your second description', 12, 2);
+    const todo1 = new Todo('First ToDo', 'your first description', 12, 1);
+    const todo2 = new Todo('Second ToDo', 'your second description', 12, 2);
     project1.items.push(todo1);
     project1.items.push(todo2);
-    toDoList.push(project1);
-    localStorage.setItem('todolist', JSON.stringify(toDoList));
+    projects.push(project1);
+    localStorage.setItem('todolist', JSON.stringify(projects));
   }
 }
 setDefaults();
 
+const createNewProject = (project) => {
+  const liEl = document.createElement('li');
+  const lianchorEl = document.createElement('a');
+  lianchorEl.textContent = project.title;
 
-// const createBtn = document.getElementById('btnCreateTask');
+  lianchorEl.addEventListener('click', () => {
+    todoDisplayEl.innerHTML = '';
+    for(let j = 0; j < project.items.length; j += 1) {        
+      const todoLiEl = document.createElement('li');
+      const title = document.createElement('button');    
+      const panel = document.createElement('div');  
+      const description = document.createElement('p');    
+      // title.classList.add('todotitle');
+      
+      title.classList.add('accordion');
+      panel.classList.add('panel');
+    
+      title.textContent = project.items[j].title;
+      description.textContent = project.items[j].description;
 
-// let toDoList;
-let currentId = 1;
+      panel.appendChild(description);
+      
+      todoDisplayEl.appendChild(todoLiEl);      
+      todoLiEl.appendChild(title);
+      todoLiEl.appendChild(panel);
 
-// const getDataFromLocalStorage = () => {
-//   let li = localStorage.getItem("toDoList");
-//   if (li != '') {
-//     //toDoList = new ToDoList(JSON.parse(li));
-//   }
-//   else {
-//     //toDoList = new ToDoList([]);
-//   }
-//   console.log(toDoList);
-// }
+      title.addEventListener('click', () => {
+        title.classList.toggle("active");
+        
+        if (panel.style.display === "block") {
+          panel.style.display = "none";
+        } else {
+          panel.style.display = "block";
+        }
+      });      
+    }
+  });
 
-// getDataFromLocalStorage();
+  liEl.appendChild(lianchorEl);
+  projectsulEl.appendChild(liEl);
+};
 
-// const updateLocalStorage = () => {
-//   localStorage.setItem("toDoList", JSON.stringify(toDoList));
-// };
+const getDataFromLocalStorage = () => {
+  projects = JSON.parse(localStorage.getItem('todolist'));
+  projectsulEl.innerHTML='';
+  for (let i = 0; i < projects.length; i += 1) {
+    createNewProject(projects[i]);
+  } 
+
+  console.log(projects);
+}
+
+getDataFromLocalStorage();
+
+const updateLocalStorage = () => {
+  localStorage.setItem("todolist", JSON.stringify(projects));
+};
+
 
 createBtn.addEventListener('click', function () {
-  const taskName = document.getElementById('taskName').value;
-  const taskModal = document.getElementById('TaskModal');
-  let toDo = {
-    id: currentId,
-    name: taskName,
-    todoItems: [],
-  }
-  // toDoList.addTodo(toDo);
-  currentId++;
-  updateLocalStorage();
-  $('#TaskModal').modal('hide');
-});
+  const projectName = document.getElementById('projectName').value;
+  const newProject = new Project(projectName);
+  projects.push(newProject);
 
-// [
-// {
-//   id: 1,
-//   name: "project 1",
-//   toDoItems: [
-//     {},{},{}
-//   ]
-// },
-// {
-//   id: 2,
-//   name: "project 1",
-//   toDoItems: [
-//     {},{},{}
-//   ]
-// }
-// ]
+  updateLocalStorage();
+  $('#projectModal').modal('hide');
+  createNewProject(newProject);
+});

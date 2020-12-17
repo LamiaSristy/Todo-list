@@ -8,7 +8,7 @@
 </head>
 
 <body>
-  <div class="modal fade" id="TaskModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -21,13 +21,13 @@
         <div class="modal-body">
           <form>
             <div class="form-group">
-              <label for="tashName">Task Name</label>
-              <input type="text" class="form-control" id="taskName" placeholder="Task Name">
+              <label for="projectName">Project Name</label>
+              <input type="text" class="form-control" id="projectName" placeholder="Project Name">
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" id="btnCreateTask" class="btn btn-primary">Add Task</button>
+          <button type="button" id="btnCreateProject" class="btn btn-primary">Add Task</button>
         </div>
       </div>
     </div>
@@ -42,26 +42,26 @@
     <div class="row">
       <div class="col-12 col-md-4 left-bar">
         <p class="div-title">List of works</p>
-        <div class="todo">
-          <ul id="projects-ul">
-            <li>To Do 1</li>
-            <li>To Do 2</li>
-            <li>To Do 3</li>
-          </ul>
-        </div>
         <div class="createbtn">
-          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#TaskModal">
-            Create New Task
+          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#projectModal">
+            Create New Project
           </button>
         </div>
+        <div class="todo">
+          <ul id="projects-ul">          
+          </ul>
+        </div>
+      
       </div>
       <div class="col-12 col-md-8 right-bar">
         <p class="div-title">Your To-do's</p>
-        <div class="tododisplay">
-          <p class="todotitle">To Do Name</p>
-          <p class="tododescription small">Description</p>
-          <p class="status">Status</p>
+        <div class="createbtn">
+          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#projectModal">
+            Create New Task
+          </button>
         </div>
+        <ul class="tododisplay" id="tododisplay">          
+        </ul>
       </div>
     </div>
   </div>
