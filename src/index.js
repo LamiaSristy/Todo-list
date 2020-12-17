@@ -40,7 +40,7 @@ const createNewProject = (project, index) => {
     projectIndexTask.value = (e.srcElement.id).split('-')[1];
     lianchorEl.classList.add('active-project');
     document.getElementById('createTaskDiv').classList.add('d-block');
-    
+
     todoDisplayEl.innerHTML = '';
     for (let j = 0; j < project.items.length; j += 1) {
       const todoLiEl = document.createElement('li');
@@ -54,20 +54,21 @@ const createNewProject = (project, index) => {
       title.classList.add('accordion', 'col-9');
       deleteTaskBtn.classList.add('col-3');
       panel.classList.add('panel');
-      
+
       const input = document.createElement('input');
       input.setAttribute('type', 'hidden');
+      input.id = "taskHidden";
       input.value = j;
       deleteTaskBtn.classList.add('btn', 'btn-danger');
       deleteTaskBtn.textContent = 'Remove';
 
       title.textContent = project.items[j].title;
-      description.textContent = project.items[j].description;  
+      description.textContent = project.items[j].description;
       panel.appendChild(description);
 
       todoDisplayEl.appendChild(todoLiEl);
       todoLiEl.appendChild(title);
-      title.appendChild(input);
+      todoLiEl.appendChild(input);
       todoLiEl.appendChild(deleteTaskBtn);
       todoLiEl.appendChild(panel);
 
@@ -81,10 +82,14 @@ const createNewProject = (project, index) => {
         }
       });
 
-      deleteTaskBtn.addEventListener('click', (j) =>{
-        let projectIndex = document.getElementById('projectIndexTask');
+      deleteTaskBtn.addEventListener('click', (e) => {
+        let projectIndex = document.getElementById('projectIndexTask').value;
         projectIndex = parseInt(projectIndex);
-        projects[projectIndex].items.splice(j, 1);         
+        var toDoIndex = e.srcElement.previousSibling.value;
+        console.log(projects[projectIndex]);
+        projects[projectIndex].items.splice(toDoIndex, 1);
+        console.log(projects[projectIndex]);
+        updateLocalStorage();
       });
     }
   });
