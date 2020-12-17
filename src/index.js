@@ -29,7 +29,7 @@ setDefaults();
 
 const deleteToDo = (e) => {
   let projectIndex = document.getElementById('projectIndexTask').value;
-  projectIndex = parseInt(projectIndex);
+  projectIndex = +projectIndex;
   const toDoIndex = e.srcElement.previousSibling.value;
   const parentli = e.srcElement.parentNode;
   console.log(projects[projectIndex]);
