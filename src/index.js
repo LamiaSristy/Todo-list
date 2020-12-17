@@ -29,6 +29,61 @@ function setDefaults() {
 }
 setDefaults();
 
+
+const deleteToDo = (e) => {
+  let projectIndex = document.getElementById('projectIndexTask').value;
+  projectIndex = parseInt(projectIndex);
+  let toDoIndex = e.srcElement.previousSibling.value;
+  let parentli = e.srcElement.parentNode;
+  console.log(projects[projectIndex]);
+  projects[projectIndex].items.splice(toDoIndex, 1);
+  console.log(projects[projectIndex]);
+  updateLocalStorage();
+  parentli.remove();
+}
+
+const showToDoItemInDom = (todo, index) => {
+  const todoLiEl = document.createElement('li');
+  const title = document.createElement('button');
+  const panel = document.createElement('div');
+  const divPannel = document.createElement('div');
+  const description = document.createElement('p');
+  const deleteTaskBtn = document.createElement('button');
+
+  divPannel.classList.add('row');
+  title.classList.add('accordion', 'col-9');
+  deleteTaskBtn.classList.add('col-3');
+  panel.classList.add('panel');
+
+  const input = document.createElement('input');
+  input.setAttribute('type', 'hidden');
+  input.id = "taskHidden";
+  input.value = index;
+  deleteTaskBtn.classList.add('btn', 'btn-danger');
+  deleteTaskBtn.textContent = 'Remove';
+
+  title.textContent = todo.title;
+  description.textContent = todo.description;
+  panel.appendChild(description);
+
+  todoDisplayEl.appendChild(todoLiEl);
+  todoLiEl.appendChild(title);
+  todoLiEl.appendChild(input);
+  todoLiEl.appendChild(deleteTaskBtn);
+  todoLiEl.appendChild(panel);
+
+  title.addEventListener('click', () => {
+    title.classList.toggle("active");
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+
+  deleteTaskBtn.addEventListener('click', (e) => deleteToDo(e));
+}
+
 const createNewProject = (project, index) => {
   const liEl = document.createElement('li');
   const lianchorEl = document.createElement('a');
@@ -43,54 +98,7 @@ const createNewProject = (project, index) => {
 
     todoDisplayEl.innerHTML = '';
     for (let j = 0; j < project.items.length; j += 1) {
-      const todoLiEl = document.createElement('li');
-      const title = document.createElement('button');
-      const panel = document.createElement('div');
-      const divPannel = document.createElement('div');
-      const description = document.createElement('p');
-      const deleteTaskBtn = document.createElement('button');
-
-      divPannel.classList.add('row');
-      title.classList.add('accordion', 'col-9');
-      deleteTaskBtn.classList.add('col-3');
-      panel.classList.add('panel');
-
-      const input = document.createElement('input');
-      input.setAttribute('type', 'hidden');
-      input.id = "taskHidden";
-      input.value = j;
-      deleteTaskBtn.classList.add('btn', 'btn-danger');
-      deleteTaskBtn.textContent = 'Remove';
-
-      title.textContent = project.items[j].title;
-      description.textContent = project.items[j].description;
-      panel.appendChild(description);
-
-      todoDisplayEl.appendChild(todoLiEl);
-      todoLiEl.appendChild(title);
-      todoLiEl.appendChild(input);
-      todoLiEl.appendChild(deleteTaskBtn);
-      todoLiEl.appendChild(panel);
-
-      title.addEventListener('click', () => {
-        title.classList.toggle("active");
-
-        if (panel.style.display === "block") {
-          panel.style.display = "none";
-        } else {
-          panel.style.display = "block";
-        }
-      });
-
-      deleteTaskBtn.addEventListener('click', (e) => {
-        let projectIndex = document.getElementById('projectIndexTask').value;
-        projectIndex = parseInt(projectIndex);
-        var toDoIndex = e.srcElement.previousSibling.value;
-        console.log(projects[projectIndex]);
-        projects[projectIndex].items.splice(toDoIndex, 1);
-        console.log(projects[projectIndex]);
-        updateLocalStorage();
-      });
+      showToDoItemInDom(project.items[j], j);
     }
   });
 
@@ -104,11 +112,8 @@ const getDataFromLocalStorage = () => {
   for (let i = 0; i < projects.length; i += 1) {
     let liEl = createNewProject(projects[i], i);
     if (i == 0) liEl.getElementsByTagName('a')[0].classList.add('active-project');
-
     projectsulEl.appendChild(liEl);
   }
-
-  //  console.log(projects);
 }
 
 getDataFromLocalStorage();
@@ -116,7 +121,6 @@ getDataFromLocalStorage();
 const updateLocalStorage = () => {
   localStorage.setItem("todolist", JSON.stringify(projects));
 };
-
 
 createProjectBtn.addEventListener('click', function () {
   const projectName = document.getElementById('projectName').value;
@@ -139,6 +143,7 @@ btnCreateTask.addEventListener('click', function () {
   let projectIndex = projectIndexTask.value;
   projects[projectIndex].items.push(toDo);
   updateLocalStorage();
-  console.log(projects);
+  let todoIndex = projects[projectIndex].items.length - 1;
+  showToDoItemInDom(toDo, todoIndex);
   $('#taskModal').modal('hide');
 });
