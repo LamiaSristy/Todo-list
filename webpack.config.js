@@ -1,10 +1,10 @@
 const Htmlwebpackplugin = require('html-webpack-plugin');
 const Minicss = require('mini-css-extract-plugin');
 const path = require('path');
-var webpack = require("webpack");
+const webpack = require('webpack');
 
 module.exports = {
-  mode: "production",
+  mode: 'production',
   entry: path.resolve(__dirname, 'src/index.js'),
   output: {
     filename: 'main.js',
@@ -58,8 +58,8 @@ module.exports = {
       chunkFilename: '[id].css',
     }),
     new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery"
-    })
+      $: 'jquery',
+      jQuery: 'jquery',
+    }),
   ],
 };

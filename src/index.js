@@ -1,15 +1,12 @@
-import _ from 'lodash';
 import 'bootstrap';
 import './style/main.scss';
 
 const { Project } = require('./projectClass');
 const { Todo } = require('./todoClass');
 
-
 const createProjectBtn = document.getElementById('btnCreateProject');
 const projectsulEl = document.getElementById('projects-ul');
 const todoDisplayEl = document.getElementById('tododisplay');
-const btnAddTask = document.getElementById('btnAddTask');
 const projectIndexTask = document.getElementById('projectIndexTask');
 const btnCreateTask = document.getElementById('btnCreateTask');
 
@@ -33,21 +30,24 @@ setDefaults();
 const deleteToDo = (e) => {
   let projectIndex = document.getElementById('projectIndexTask').value;
   projectIndex = parseInt(projectIndex);
-  let toDoIndex = e.srcElement.previousSibling.value;
-  let parentli = e.srcElement.parentNode;
+  const toDoIndex = e.srcElement.previousSibling.value;
+  const parentli = e.srcElement.parentNode;
   console.log(projects[projectIndex]);
   projects[projectIndex].items.splice(toDoIndex, 1);
   console.log(projects[projectIndex]);
-  updateLocalStorage();
+  // updateLocalStorage();
   parentli.remove();
-}
+};
 
 const showToDoItemInDom = (todo, index) => {
   const todoLiEl = document.createElement('li');
   const title = document.createElement('button');
   const panel = document.createElement('div');
   const divPannel = document.createElement('div');
+  // const
   const description = document.createElement('p');
+  const dueDate = document.createElement('p');
+  const proprity = document.createElement('p');
   const deleteTaskBtn = document.createElement('button');
 
   divPannel.classList.add('row');
@@ -57,14 +57,19 @@ const showToDoItemInDom = (todo, index) => {
 
   const input = document.createElement('input');
   input.setAttribute('type', 'hidden');
-  input.id = "taskHidden";
+  input.id = 'taskHidden';
   input.value = index;
-  deleteTaskBtn.classList.add('btn', 'btn-danger');
+  deleteTaskBtn.classList.add('btn', 'btn-danger', 'btn-small');
   deleteTaskBtn.textContent = 'Remove';
 
   title.textContent = todo.title;
-  description.textContent = todo.description;
+  description.textContent = `${todo.description} is a prority: ${todo.priority} task needs to complete within ${todo.duedate} `;
+  // dueDate.textContent = todo.duedate;
+  // proprity.textContent = todo.priority;
+
   panel.appendChild(description);
+  panel.appendChild(dueDate);
+  panel.appendChild(proprity);
 
   todoDisplayEl.appendChild(todoLiEl);
   todoLiEl.appendChild(title);
@@ -73,16 +78,16 @@ const showToDoItemInDom = (todo, index) => {
   todoLiEl.appendChild(panel);
 
   title.addEventListener('click', () => {
-    title.classList.toggle("active");
-    if (panel.style.display === "block") {
-      panel.style.display = "none";
+    title.classList.toggle('active');
+    if (panel.style.display === 'block') {
+      panel.style.display = 'none';
     } else {
-      panel.style.display = "block";
+      panel.style.display = 'block';
     }
   });
 
   deleteTaskBtn.addEventListener('click', (e) => deleteToDo(e));
-}
+};
 
 const createNewProject = (project, index) => {
   const liEl = document.createElement('li');
@@ -91,7 +96,7 @@ const createNewProject = (project, index) => {
   lianchorEl.id = `index-${index}`;
 
   lianchorEl.addEventListener('click', (e) => {
-    document.querySelector(".active-project").classList.remove('active-project');
+    document.querySelector('.active-project').classList.remove('active-project');
     projectIndexTask.value = (e.srcElement.id).split('-')[1];
     lianchorEl.classList.add('active-project');
     document.getElementById('createTaskDiv').classList.add('d-block');
@@ -110,40 +115,41 @@ const getDataFromLocalStorage = () => {
   projects = JSON.parse(localStorage.getItem('todolist'));
   projectsulEl.innerHTML = '';
   for (let i = 0; i < projects.length; i += 1) {
-    let liEl = createNewProject(projects[i], i);
-    if (i == 0) liEl.getElementsByTagName('a')[0].classList.add('active-project');
+    const liEl = createNewProject(projects[i], i);
+    if (i === 0) liEl.getElementsByTagName('a')[0].classList.add('active-project');
     projectsulEl.appendChild(liEl);
   }
-}
+};
 
 getDataFromLocalStorage();
 
 const updateLocalStorage = () => {
-  localStorage.setItem("todolist", JSON.stringify(projects));
+  localStorage.setItem('todolist', JSON.stringify(projects));
 };
 
-createProjectBtn.addEventListener('click', function () {
+createProjectBtn.addEventListener('click', () => {
   const projectName = document.getElementById('projectName').value;
   const newProject = new Project(projectName);
-
   console.log(projects.length);
   projects.push(newProject);
   updateLocalStorage();
   $('#projectModal').modal('hide');
   createNewProject(newProject, projects.length - 1);
+  getDataFromLocalStorage();
 });
 
-btnCreateTask.addEventListener('click', function () {
-  let taskName = document.getElementById('taskName').value;
-  let description = document.getElementById('description').value;
-  let dueDate = document.getElementById('dueDate').value;
-  let priority = document.getElementById('priority').value;
+btnCreateTask.addEventListener('click', () => {
+  const taskName = document.getElementById('taskName').value;
+  const description = document.getElementById('description').value;
+  const dueDate = document.getElementById('dueDate').value;
+  const priority = document.getElementById('priority').value;
 
-  let toDo = new Todo(taskName, description, dueDate, priority);
-  let projectIndex = projectIndexTask.value;
+  const toDo = new Todo(taskName, description, dueDate, priority);
+  const projectIndex = projectIndexTask.value;
   projects[projectIndex].items.push(toDo);
+  // console.log(toDo[dueDate]);
   updateLocalStorage();
-  let todoIndex = projects[projectIndex].items.length - 1;
+  const todoIndex = projects[projectIndex].items.length - 1;
   showToDoItemInDom(toDo, todoIndex);
   $('#taskModal').modal('hide');
 });
