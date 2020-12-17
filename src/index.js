@@ -1,14 +1,12 @@
 import _ from 'lodash';
 import 'bootstrap';
 import './style/main.scss';
-// import { taskFactory, todoItem } from './factories';
-// import ToDoList from './toDoList';
 
 const { Project } = require('./projectClass');
 const { Todo } = require('./todoClass');
 
 
-const createBtn = document.getElementById('btnCreateProject');
+const createProjectBtn = document.getElementById('btnCreateProject');
 const projectsulEl = document.getElementById('projects-ul');
 const todoDisplayEl = document.getElementById('tododisplay');
 
@@ -32,15 +30,20 @@ const createNewProject = (project) => {
   const liEl = document.createElement('li');
   const lianchorEl = document.createElement('a');
   lianchorEl.textContent = project.title;
+  lianchorEl.id = lianchorEl.textContent;
 
   lianchorEl.addEventListener('click', () => {
+    document.querySelector(".active-project").classList.remove('active-project');
+
+    lianchorEl.classList.add('active-project');
+    // lianchorEl.id = lianchorEl.textContent;
     todoDisplayEl.innerHTML = '';
     for(let j = 0; j < project.items.length; j += 1) {        
       const todoLiEl = document.createElement('li');
       const title = document.createElement('button');    
       const panel = document.createElement('div');  
-      const description = document.createElement('p');    
-      // title.classList.add('todotitle');
+      const description = document.createElement('p');
+      
       
       title.classList.add('accordion');
       panel.classList.add('panel');
@@ -67,14 +70,17 @@ const createNewProject = (project) => {
   });
 
   liEl.appendChild(lianchorEl);
-  projectsulEl.appendChild(liEl);
+  return liEl;
 };
 
 const getDataFromLocalStorage = () => {
   projects = JSON.parse(localStorage.getItem('todolist'));
   projectsulEl.innerHTML='';
   for (let i = 0; i < projects.length; i += 1) {
-    createNewProject(projects[i]);
+    let liEl = createNewProject(projects[i]);
+    if (i==0) liEl.getElementsByTagName('a')[0].classList.add('active-project');
+
+    projectsulEl.appendChild(liEl);
   } 
 
   console.log(projects);
@@ -87,7 +93,7 @@ const updateLocalStorage = () => {
 };
 
 
-createBtn.addEventListener('click', function () {
+createProjectBtn.addEventListener('click', function () {
   const projectName = document.getElementById('projectName').value;
   const newProject = new Project(projectName);
   projects.push(newProject);

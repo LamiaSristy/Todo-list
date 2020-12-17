@@ -21,6 +21,10 @@ h3 {
   color: bisque;
 }
 
+li {
+  list-style: none;
+}
+
 .navbar-light{
     background-color: rgb(44, 52, 78) !important;
 }
@@ -125,5 +129,9 @@ h3 {
   display: none;
   background-color: white;
   overflow: hidden;
+}
+
+.active-project {
+  color: brown;
 }
 
