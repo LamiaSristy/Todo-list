@@ -2,7 +2,18 @@
 
 This project is an application of simple to do list, where a user can create sample categories for todo and add/delete tasks.
 
+## Live Demo:
+[Live](https://raw.githack.com/LamiaSristy/Todo-list/feature/dist/index.html)
+
+## Screen-shots:
+<img src="assets/images/screencapture.png">
+
 ## Build-With
+
+- HTML5
+- CSS3
+- JavaScript Webpack
+- VScode
 
 
 ## Getting Started
