@@ -1,5 +1,11 @@
 @import 'bootstrap';
 
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
 *::before,
 *::after {
   box-sizing: inherit;
@@ -152,4 +158,27 @@ li {
 
 .btn-danger {
   background-color: brown;
+}
+
+footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgb(49, 49, 49);
+  color: #fff;
+}
+
+footer p {
+  margin-top: 15px;
+}
+
+footer li {
+  list-style: none;
+}
+
+.flexfooter {
+  display: flex;
+  justify-content: center;
 }
