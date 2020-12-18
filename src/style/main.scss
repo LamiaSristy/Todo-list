@@ -1,0 +1,155 @@
+@import 'bootstrap';
+
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background-color: rgb(77, 75, 75);
+}
+
+h2,
+h3 {
+  margin: 20px;
+  text-align: center;
+  color: bisque;
+}
+
+li {
+  list-style: none;
+}
+
+.navbar-light {
+  background-color: rgb(44, 52, 78) !important;
+}
+
+.title {
+  margin: 0 auto;
+}
+
+.container {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: gray !important;
+  color: #fff;
+  border: 1px dotted brown;
+  border-radius: 10px;
+}
+
+.left-bar {
+  padding-top: 10px;
+}
+
+.right-bar {
+  margin-top: 10px;
+}
+
+.left-bar li {
+  background-color: gray;
+  width: 100%;
+  margin-top: 5px;
+  border: 1px dotted brown;
+  border-radius: 3px;
+  color: #fff;
+}
+
+.div-title {
+  text-align: center;
+  color: brown;
+}
+
+.todo {
+  font-size: small;
+  padding-top: 10px;
+  padding-right: 30px;
+  padding-bottom: 10px;
+  background-color: blanchedalmond;
+  color: black;
+  border-radius: 10px;
+  box-shadow: 5px 10px rgb(49, 49, 49);
+}
+
+.createbtn {
+  margin-top: 10px;
+}
+
+.btn-primary {
+  width: 100%;
+  margin: 10px auto;
+  background-color: rgb(44, 52, 78) !important;
+  border: rgb(44, 52, 78);
+  color: brown;
+}
+
+.tododisplay {
+  padding: 10px 30px;
+  background-color: blanchedalmond;
+  border-radius: 10px;
+  color: black;
+  text-align: center;
+  box-shadow: 5px 10px rgb(49, 49, 49);
+}
+
+.tododisplay:hover {
+  transform: scale(1.02, 1.02);
+}
+
+.todotitle {
+  font-size: large;
+  font-weight: 700;
+}
+
+.tododescription {
+  font-size: small;
+}
+
+.status {
+  font-size: x-small;
+}
+
+.accordion {
+  background-color: rgb(236, 232, 232);
+  color: #444;
+  cursor: pointer;
+  padding: 8px;
+  width: 100%;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+  border-radius: 5px;
+  border: 1px dotted brown;
+  margin-bottom: 2px;
+}
+
+.active,
+.accordion:hover {
+  background-color: rgb(236, 232, 232);
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  background-color: rgb(235, 233, 230);
+  overflow: hidden;
+}
+
+.active-project {
+  color: brown;
+}
+
+#createTaskDiv {
+  display: none;
+}
+
+.btn-danger {
+  background-color: brown;
+}
