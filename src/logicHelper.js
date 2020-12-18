@@ -33,6 +33,22 @@ const selectProject = (lianchorEl, project, displayTodoList) => {
   });
 };
 
+const editTask = (editTaskBtn, todo, index) => {
+  editTaskBtn.addEventListener('click', () => {
+    const taskName = document.getElementById('editTaskName');
+    const description = document.getElementById('editTaskDescription');
+    const dueDate = document.getElementById('editTaskDueDate');
+    const priority = document.getElementById('editTaskPriority');
+    const editTaskIndex = document.getElementById('taskIndex');
+    editTaskIndex.value = index;
+
+    taskName.value = todo.title;
+    description.value = todo.description;
+    dueDate.value = todo.duedate;
+    priority.value = todo.priority;
+  });
+};
+
 module.exports = {
-  deleteToDo, showToDoPanel, selectProject,
+  deleteToDo, showToDoPanel, selectProject, editTask,
 };

@@ -1,7 +1,9 @@
 import 'bootstrap';
 import './style/main.scss';
 
-const { deleteToDo, showToDoPanel, selectProject } = require('./logicHelper');
+const {
+  deleteToDo, showToDoPanel, selectProject, editTask,
+} = require('./logicHelper');
 
 const projectsulEl = document.getElementById('projects-ul');
 const todoDisplayEl = document.getElementById('tododisplay');
@@ -16,18 +18,26 @@ const showToDoItemInDom = (todo, index) => {
   const dueDate = document.createElement('p');
   const proprity = document.createElement('p');
   const deleteTaskBtn = document.createElement('button');
+  const editTaskBtn = document.createElement('button');
 
   divPannel.classList.add('row');
-  title.classList.add('accordion', 'col-9');
-  deleteTaskBtn.classList.add('col-3');
+  title.classList.add('accordion', 'col-6');
+  deleteTaskBtn.classList.add('col-3', 'btn-danger', 'btn-small', 'btn', 'todo-delete');
+  editTaskBtn.classList.add('col-3', 'btn-promary', 'btn-small', 'btn', 'btn-success', 'btnEditTask');
   panel.classList.add('panel');
 
   const input = document.createElement('input');
   input.setAttribute('type', 'hidden');
   input.id = 'taskHidden';
   input.value = index;
-  deleteTaskBtn.classList.add('btn', 'btn-danger', 'btn-small', 'todo-delete');
+
   deleteTaskBtn.textContent = 'Remove';
+  editTaskBtn.textContent = 'Edit';
+  editTaskBtn.id = 'btnEditTask';
+  editTaskBtn.setAttribute('data-toggle', 'modal');
+  editTaskBtn.setAttribute('data-target', '#editTaskModal');
+
+  editTask(editTaskBtn, todo, index);
 
   title.textContent = todo.title;
   description.textContent = `${todo.description} is a prority: ${todo.priority} task needs to complete within ${todo.duedate} `;
@@ -40,6 +50,7 @@ const showToDoItemInDom = (todo, index) => {
   todoLiEl.appendChild(title);
   todoLiEl.appendChild(input);
   todoLiEl.appendChild(deleteTaskBtn);
+  todoLiEl.appendChild(editTaskBtn);
   todoLiEl.appendChild(panel);
 
   showToDoPanel(title, panel);
@@ -79,4 +90,6 @@ const displayProjects = (projects) => {
   }
 };
 
-export { displayProjects, showToDoItemInDom, addNewProject };
+export {
+  displayProjects, showToDoItemInDom, addNewProject, displayTodoList,
+};

@@ -65,6 +65,38 @@
     </div>
   </div>
 
+  <div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog" aria-labelledby="editTaskModalTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editTaskModalTitle">Edit Task</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="taskIndex" />
+        <form>
+          <div class="form-group">
+            <label for="editTaskName">Task Name</label>
+            <input type="text" class="form-control" id="editTaskName" placeholder="Task-Name">
+            <label for="editTaskDescription">Description</label>
+            <input type="text" class="form-control" id="editTaskDescription" placeholder="Description">
+            <label for="editTaskDueDate">Due Date</label>
+            <input type="datetime-local" class="form-control" id="editTaskDueDate">              
+            <label for="editTaskPriority">Priority</label>
+            <input type="number" class="form-control" id="editTaskPriority">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btnEditTask" class="btn btn-primary edit-button">Edit Task</button>
+      </div>
+    </div>
+  </div>
+</div>
+
   <header>
     <nav class="navbar navbar-light text-light">
       <h1 class="title">To-Do List</h1>
@@ -97,7 +129,5 @@
       </div>
     </div>
   </div>
-
 </body>
-
 </html>

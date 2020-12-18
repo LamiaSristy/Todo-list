@@ -1,6 +1,8 @@
 import 'bootstrap';
 import './style/main.scss';
-import { displayProjects, showToDoItemInDom, addNewProject } from './domHelper';
+import {
+  displayProjects, showToDoItemInDom, addNewProject, displayTodoList,
+} from './domHelper';
 
 const { Project } = require('./projectClass');
 const { Todo } = require('./todoClass');
@@ -10,6 +12,7 @@ const { getDataFromLocalStorage, updateLocalStorage } = require('./helper');
 const createProjectBtn = document.getElementById('btnCreateProject');
 const projectIndexTask = document.getElementById('projectIndexTask');
 const btnCreateTask = document.getElementById('btnCreateTask');
+const btnEditTask = document.getElementById('btnEditTask');
 
 let projects = [];
 
@@ -53,4 +56,22 @@ btnCreateTask.addEventListener('click', () => {
   const todoIndex = projects[projectIndex].items.length - 1;
   showToDoItemInDom(toDo, todoIndex);
   $('#taskModal').modal('hide');
+});
+
+btnEditTask.addEventListener('click', () => {
+  const editTaskName = document.getElementById('editTaskName').value;
+  const editDescription = document.getElementById('editTaskDescription').value;
+  const editDueDate = document.getElementById('editTaskDueDate').value;
+  const editpPriority = document.getElementById('editTaskPriority').value;
+  const editTaskIndex = document.getElementById('taskIndex').value;
+
+  const toDo = new Todo(editTaskName, editDescription, editDueDate, editpPriority);
+
+  const projectIndex = projectIndexTask.value;
+
+  projects = getDataFromLocalStorage();
+  projects[projectIndex].items[editTaskIndex] = toDo;
+  updateLocalStorage(projects);
+  displayTodoList(projects[projectIndex]);
+  $('#editTaskModal').modal('hide');
 });
