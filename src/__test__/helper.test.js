@@ -1,4 +1,4 @@
-const { getDataFromLocalStorage, updateLocalStorage } = require('../helper');
+import { getDataFromLocalStorage, updateLocalStorage } from '../helper';
 
 test('Returns projects which is null initially', () => {
   expect(getDataFromLocalStorage('projects')).toBeNull();

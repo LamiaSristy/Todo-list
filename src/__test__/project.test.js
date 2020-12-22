@@ -1,4 +1,4 @@
-const { Project } = require('../projectClass');
+import Project from '../projectClass';
 
 test('create project object and checks the truthness of title', () => {
   const project = new Project('hello');

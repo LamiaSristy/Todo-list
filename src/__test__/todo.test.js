@@ -1,4 +1,4 @@
-const { Todo } = require('../todoClass');
+import Todo from '../todoClass';
 
 test('create todo object and check the truthness of title', () => {
   const todo = new Todo('Todo 1');
