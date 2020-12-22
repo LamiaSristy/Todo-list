@@ -1,6 +1,7 @@
 # To-do List
 
 This project is an application of simple to do list, where a user can create sample categories for todo and add/delete tasks.
+Also here we have added unit tests.
 
 ## Live Demo:
 [Live](https://raw.githack.com/LamiaSristy/Todo-list/development/dist/index.html)
