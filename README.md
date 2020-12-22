@@ -1,6 +1,7 @@
 # To-do List
 
 This project is an application of simple to do list, where a user can create sample categories for todo and add/delete tasks.
+Also here we have added unit tests.
 
 ## Live Demo:
 [Live](https://raw.githack.com/LamiaSristy/Todo-list/development/dist/index.html)
@@ -29,6 +30,11 @@ To get this project up and running locally, "npm install" is needed to be run in
 3. Copy and paste the following code into the Terminal: git clone https://github.com/LamiaSristy/ToDo-List
 4. cd to the folder "dist".
 5. click on the "index.html".
+
+**To Run the test suit:**
+
+1. Run "npm install"
+2. Run "npm run test"
 
 
 ## Author Details::

@@ -56,6 +56,10 @@ li {
   margin-top: 10px;
 }
 
+footer li {
+  list-style: none;
+}
+
 .left-bar li {
   background-color: gray;
   width: 100%;
@@ -172,10 +176,6 @@ footer {
 
 footer p {
   margin-top: 15px;
-}
-
-footer li {
-  list-style: none;
 }
 
 .flexfooter {
