@@ -4,10 +4,9 @@ import {
   displayProjects, showToDoItemInDom, addNewProject, displayTodoList,
 } from './domHelper';
 
-const { Project } = require('./projectClass');
-const { Todo } = require('./todoClass');
-const { getDataFromLocalStorage, updateLocalStorage } = require('./helper');
-
+import Project from './projectClass';
+import Todo from './todoClass';
+import { getDataFromLocalStorage, updateLocalStorage } from './helper';
 
 const createProjectBtn = document.getElementById('btnCreateProject');
 const projectIndexTask = document.getElementById('projectIndexTask');
