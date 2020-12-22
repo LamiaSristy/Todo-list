@@ -8,7 +8,6 @@ import Project from './projectClass';
 import Todo from './todoClass';
 import { getDataFromLocalStorage, updateLocalStorage } from './helper';
 
-
 const createProjectBtn = document.getElementById('btnCreateProject');
 const projectIndexTask = document.getElementById('projectIndexTask');
 const btnCreateTask = document.getElementById('btnCreateTask');
