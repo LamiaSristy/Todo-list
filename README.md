@@ -30,6 +30,11 @@ To get this project up and running locally, "npm install" is needed to be run in
 4. cd to the folder "dist".
 5. click on the "index.html".
 
+**To Run the test suit:**
+
+1. Run "npm install"
+2. Run "npm run test"
+
 
 ## Author Details::
 
